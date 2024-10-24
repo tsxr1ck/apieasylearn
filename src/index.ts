@@ -3,7 +3,7 @@ const app = express();
 
 app.get('/', (req, res) => {
   const name = process.env.NAME || 'World';
-  res.send(`Hello ${name}! :)`);
+  res.send(`Hello ${name}! :3`);
 });
 
 const port = parseInt(process.env.PORT || '3000');

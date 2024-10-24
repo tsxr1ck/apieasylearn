@@ -27,7 +27,7 @@ jobs:
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
           cd apps
-          cd api
-          git pull origin main
+          cd apieasylearn
+          git pull origin main  
           npm run build
           pm2 start dist/index.js --name "apieasylearn"

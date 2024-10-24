@@ -28,6 +28,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
           cd apps
           cd apieasylearn
-          git pull origin main  
+          git pull origin main
+          pm2 stop apieasylearn
           npm run build
           pm2 start dist/index.js --name "apieasylearn"

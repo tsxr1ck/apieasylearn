@@ -15,11 +15,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-        with:
-          ssh-key: ${{ secrets.SSH_KEY }}
-
     - name: Set up SSH
         run: |
           mkdir -p ~/.ssh

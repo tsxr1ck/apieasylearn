@@ -15,10 +15,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-     - name: Reconfigure git to use HTTP authentication
-        run: >
-          git config --global url."https://github.com/".insteadOf
-          ssh://git@github.com/
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:

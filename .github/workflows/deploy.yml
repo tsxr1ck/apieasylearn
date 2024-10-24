@@ -34,7 +34,7 @@ jobs:
           pm2 stop apieasylearn
           cd apps
           rm -r apieasylearn
-          git@github.com:tsxr1ck/apieasylearn.git
+          git clone git@github.com:tsxr1ck/apieasylearn.git
           cd apieasylearn
           # git pull origin main
           npm install

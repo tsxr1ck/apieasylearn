@@ -15,6 +15,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Set who I am
+      run: |
+        git config --global user.email "me@tsxr1ck.cloud"
+        git config --global user.name "Rick"
+        git config --global url."git@github.com:".insteadOf "https://github.com/"
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:

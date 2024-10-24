@@ -31,10 +31,12 @@ jobs:
         script: |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-          ssh -T git@github.com
-          cd apps
-          cd apieasylearn
-          git pull origin main
           pm2 stop apieasylearn
+          cd apps
+          rm -r apieasylearn
+          git@github.com:tsxr1ck/apieasylearn.git
+          cd apieasylearn
+          # git pull origin main
+          npm install
           npm run build
           pm2 start dist/index.js --name "apieasylearn"

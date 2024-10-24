@@ -21,10 +21,14 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
         port: 22
         script: |
-          cd /var/www/youtube.com/
-          git pull origin main
-          git status
-          npm install
-          pm2 run dist/index.js
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+          cd apps
+          rm -rf apieasylearn
+          git clone git@github.com:tsxr1ck/apieasylearn.git
+          cd apieasylearn
+          npm run build
+          pm2 start dist/index.js --name "apieasylearn"

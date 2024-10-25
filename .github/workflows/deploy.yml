@@ -20,15 +20,15 @@ jobs:
         git config --global user.email "me@tsxr1ck.cloud"
         git config --global user.name "Rick"
         git config --global url."git@github.com:".insteadOf "https://github.com/"
-    - name: Deploy using ssh
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE}}
-        port: 22
-        script: |
+    - name: ssh key passphrase
+    uses: appleboy/ssh-action@v1.1.0
+    with:
+      host: ${{ secrets.SSH_HOST }}
+      username: ${{ secrets.SSH_GH_USERNAME }}
+      key: ${{ secrets.SSH_PRIVATE_KEY }}
+      port: ${{ secrets.PORT }}
++     passphrase: ${{ secrets.SSH_PASSPHRASE }}
+      script: |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
           pm2 stop apieasylearn

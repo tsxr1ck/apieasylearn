@@ -32,7 +32,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
           pm2 stop apieasylearn
           cd apps
-          rm -f apieasylearn
+          rm -r apieasylearn
           git clone https://github.com/tsxr1ck/apieasylearn.git
           Username: ${{ secrets.SSH_GH_USERNAME}}
           Password: $${{ secrets.SSH_PAT}}

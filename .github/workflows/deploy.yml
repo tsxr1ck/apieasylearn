@@ -27,7 +27,7 @@ jobs:
       username: ${{ secrets.SSH_GH_USERNAME }}
       key: ${{ secrets.SSH_PRIVATE_KEY }}
       port: ${{ secrets.PORT }}
-+     passphrase: ${{ secrets.SSH_PASSPHRASE }}
+      passphrase: ${{ secrets.SSH_PASSPHRASE }}
       script: |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

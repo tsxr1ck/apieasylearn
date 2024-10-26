@@ -35,11 +35,21 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE}}
         port: 22
         script: |
+          # Start ssh-agent and add the SSH key
+          eval "$(ssh-agent -s)"
+          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
+
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+          
           pm2 stop apieasylearn
-          cd apps
-          cd apieasylearn
-          git pull origin main
+          cd apps/apieasylearn
+          
+          # Use GIT_SSH_COMMAND to use ssh-agent for authentication
+          GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git pull origin main
+          
           npm run build
           pm2 start dist/index.js --name "apieasylearn"
+          
+          # Kill the ssh-agent
+          ssh-agent -k

@@ -39,8 +39,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
           pm2 stop apieasylearn
           cd apps
-          rm -r apieasylearn
-          git clone https://github.com/tsxr1ck/apieasylearn.git
           cd apieasylearn
+          git pull origin main
           npm run build
           pm2 start dist/index.js --name "apieasylearn"

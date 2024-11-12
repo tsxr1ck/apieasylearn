@@ -1,9 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "sourceMap": true,
-    "outDir": "dist",
-    "esModuleInterop": true
-  }
+    "target": "ES6",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*",        // Includes all files in the src directory
+    "src/types/**/*",
+    "config/**/*",
+    "src/config/**/*"   // Includes all files in the types directory
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

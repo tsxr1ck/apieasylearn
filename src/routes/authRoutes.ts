@@ -14,6 +14,6 @@ router.post(
     failureRedirect: '/login',
     failureFlash: true,
   })
-);
+);7
 
 export default router;

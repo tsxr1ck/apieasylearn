@@ -12,7 +12,7 @@ initializePassport(passport);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({
-  origin: 'https://admin.easylearnacademy.mx/', // Allow your frontend origin
+  origin: 'https://admin.easylearnacademy.mx', // Allow your frontend origin
   methods: ['GET', 'POST'],       // Allow specific HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
 }));

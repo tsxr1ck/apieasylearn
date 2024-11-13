@@ -30,8 +30,8 @@ app.use(passport.session());
 
 app.use('/auth', authRoutes);
 
-app.listen(3001, () => {
-  console.log('Server is running on port 3001');
+app.listen(3003, () => {
+  console.log('Server is running on port 3003');
 });
 
 app.get('/', (req, res) => {

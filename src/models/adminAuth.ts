@@ -31,6 +31,14 @@ class AdminAuth {
     return result.rows[0] || null;
   }
 
+  static async findById(id: number): Promise<AdminAuthEntity | null> {
+    const result = await db.query(
+      `SELECT * FROM admin_auth WHERE admin_id = $1`,
+      [id]
+    );
+    return result.rows[0] || null;
+  }
+
   static async updateLastLogin(adminId: number): Promise<void> {
     await db.query(
       `UPDATE admin_auth SET last_login = CURRENT_TIMESTAMP WHERE admin_id = $1`,

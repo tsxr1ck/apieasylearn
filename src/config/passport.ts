@@ -1,5 +1,6 @@
 import { PassportStatic } from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as JwtStrategy, ExtractJwt, StrategyOptions } from 'passport-jwt';
 import bcrypt from 'bcrypt';
 import AdminAuth, { AdminAuthEntity } from '../models/adminAuth';
 namespace Express {
@@ -20,7 +21,28 @@ interface User {
   created_at: Date;         // Timestamp of when the record was created
   updated_at: Date;         // Timestamp of last update
 }
+
+const options: StrategyOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: 'your_jwt_secret_key', // Store this securely as an environment variable
+};
+
+
 export default (passport: PassportStatic) => {
+  passport.use(
+    new JwtStrategy(options, async (jwt_payload, done) => {
+      try {
+        const user = await AdminAuth.findById(jwt_payload.userId);
+        if (user) {
+          return done(null, user);
+        } else {
+          return done(null, false);
+        }
+      } catch (err) {
+        return done(err, false);
+      }
+    })
+  );
   passport.use(
     'local-login',
     new LocalStrategy(

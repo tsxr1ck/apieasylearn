@@ -4,13 +4,18 @@ import session from 'express-session';
 import passport from 'passport';
 import authRoutes from './routes/authRoutes';
 import initializePassport from './config/passport';
-
+import cors from 'cors';
 
 const app: Application = express();
 initializePassport(passport);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+  origin: 'https://admin.easylearnacademy.mx/', // Allow your frontend origin
+  methods: ['GET', 'POST'],       // Allow specific HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+}));
 
 app.use(
   session({
